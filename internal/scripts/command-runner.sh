@@ -29,7 +29,7 @@ eval "$(ssh-agent -s)" > /dev/null 2>&1
 ssh-add -k ~/.ssh/id_ed25519.GitHub > /dev/null 2>&1
 export GPG_TTY=$(tty)
 
-echo "<command-runner> COMMAND $COMMAND , ARGS $ARGS_STR" 
+# echo "<command-runner> COMMAND $COMMAND , ARGS $ARGS_STR" 
 COMMAND_STR="$COMMAND $ARGS_STR"
 
 # Change to the project directory and execute the command
