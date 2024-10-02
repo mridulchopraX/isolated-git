@@ -27,8 +27,10 @@ With this project, you can run personal Git commands safely without worrying abo
    git clone git@github.com:mridulchopraX/isolated-git.git
 2. **Run the Setup Script**
     Navigate to the project directory and run the setup script:
+    ```bash
     cd <projects>/isolated-git
    ./get-started.sh "<projects_home_directory>"
+    ```
 3. **Configure Your Shell**
     Add the following function to your ~/.zshrc (or ~/.bashrc if you're using Bash):
     ```bash
@@ -42,7 +44,7 @@ With this project, you can run personal Git commands safely without worrying abo
             ARGS_STR+="\"$arg\" "
         done
         ARGS_STR=${ARGS_STR% }
-        $SCRIPTS_HOME/git/run-command.sh "mridulchoprax" "git $COMMAND" "$ARGS_STR"
+        $SCRIPTS_HOME/git/run-command.sh "<your-username>" "git $COMMAND" "$ARGS_STR"
     }
     ```
 4. **Setup the Command Runner**
