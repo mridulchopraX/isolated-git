@@ -7,7 +7,11 @@ Many developers face the challenge of managing both personal and work GitHub acc
 With this project, you can run personal Git commands safely without worrying about mixing up your work and personal keys or accounts.
 
 ![Screenshot 2024-10-02 at 2 48 38 PM](https://github.com/user-attachments/assets/f011f1b0-7d14-4cda-9032-15aae374f05b)
+
+
 ![Screenshot 2024-10-02 at 2 47 58 PM](https://github.com/user-attachments/assets/5718c382-6f64-4b18-a547-fdb1ac80b784)
+
+
 ![Screenshot 2024-10-02 at 2 47 29 PM](https://github.com/user-attachments/assets/b3c26aca-239c-4a9c-9b4c-42b6793b74b6)
 
 ## Features
