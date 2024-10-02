@@ -1,5 +1,5 @@
 # Use a base image
-FROM ubuntu:latest
+FROM alpine:latest
 
 # Set environment variables for non-interactive mode
 ENV DEBIAN_FRONTEND=noninteractive
@@ -9,11 +9,13 @@ WORKDIR /
 
 # Copy your scripts into the 'scripts' directory
 COPY ./internal/scripts/setup-git.sh ./scripts/
+COPY ./internal/scripts/command-runner.sh ./scripts/
 RUN chmod +x scripts/setup-git.sh
+RUN chmod +x scripts/command-runner.sh
 RUN mkdir /projects
 
 # Install necessary packages
-RUN apt-get update && apt-get install -y git gpg openssh-client
+RUN apk update && apk add --no-cache git gnupg openssh
 
 # Default command
-CMD ["bash"]
+CMD ["/bin/ash"]

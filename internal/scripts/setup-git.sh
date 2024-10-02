@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/ash
 
 set -e  # Exit immediately if a command exits with a non-zero status
 
@@ -18,7 +18,7 @@ read email
 ssh-keygen -o -a 256 -t ed25519 -C "$email - $(date +'%m/%d/%Y')" -f ~/.ssh/id_ed25519.GitHub || { echo "SSH key generation failed"; exit 1; }
 
 # Start SSH agent
-echo 'eval "$(ssh-agent -s)"' >>~/.zprofile
+echo 'eval "$(ssh-agent -s)"' >>~/.profile
 eval "$(ssh-agent -s)"
 ssh-add -k ~/.ssh/id_ed25519.GitHub
 

@@ -8,10 +8,11 @@ read username
 
 IMAGE_NAME="isolated-git"
 CONTAINER_NAME="$username-git"
-ssh_dir="$script_dir/internal/$username/.ssh"
-gnupg_dir="$script_dir/internal/$username/.gnupg"
+SSH_DIR="$script_dir/internal/$username/.ssh"
+GNUPG_DIR="$script_dir/internal/$username/.gnupg"
 
-mkdir -p "$ssh_dir"
+mkdir -p "$SSH_DIR"
+mkdir -p "$GNUPG_DIR"
 
 echo "🛠️ Building Docker Image..."
 docker build -t "$IMAGE_NAME" .
@@ -30,12 +31,12 @@ if [ "$(docker ps -a -q -f name=^${CONTAINER_NAME}$)" ]; then
 else
     echo "📦 Creating and starting container '$CONTAINER_NAME'..."
     docker run -dti \
-    -v "$ssh_dir":"/root/.ssh" \
-    -v "$gnupg_dir":"/root/.gnupg" \
+    -v $SSH_DIR:"/root/.ssh" \
+    -v $GNUPG_DIR:"/root/.gnupg" \
     -v "$PROJECT_HOME":"/projects" \
     --name "$CONTAINER_NAME" \
     "$IMAGE_NAME" \
-    /bin/bash
+    /bin/ash
 fi
 
 # Wait for a few seconds to ensure the container is up (optional)
@@ -43,6 +44,6 @@ sleep 5
 
 echo "🔄 Setting up your GitHub account..."
 docker exec -ti "$CONTAINER_NAME" \
-bash -c "source /scripts/setup-git.sh"
+/bin/ash -c "source /scripts/setup-git.sh"
 
 echo "✅ Setup Complete !!"
