@@ -1,5 +1,4 @@
-# Ignore all folders in the internal directory
-internal/*/
+keystore
 
 # Exclude the scripts folder from being ignored
 !internal/scripts/
