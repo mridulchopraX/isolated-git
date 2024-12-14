@@ -1,4 +1,0 @@
-keystore
-
-# Exclude the scripts folder from being ignored
-!internal/scripts/
