@@ -1,15 +1,14 @@
 #!/bin/bash
 
+USERNAME=$1
+COMMAND=$2
+
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
 IMAGE_NAME="isolated-git"
-CONTAINER_NAME="$username-git"
-SSH_DIR="$script_dir/internal/$username/.ssh"
+CONTAINER_NAME="$USERNAME-git"
+SSH_DIR="$SCRIPT_DIR/internal/$username/.ssh"
 GNUPG_DIR="$SCRIPT_DIR/internal/$username/.gnupg"
 PROJECT_HOME="$HOME/Documents/mridulchopraX"
-
-
-CONTAINER_NAME="$1-git"
-COMMAND=$2
 
 shift 2;
 
@@ -20,7 +19,6 @@ for arg in "${ARGS[@]}"; do
     ARGS_STR+=$arg
 done
 ARGS_STR=${ARGS_STR% } # Remove the trailing space
-
 
 if [ ! "$(docker ps -a -q -f name=^${CONTAINER_NAME}$)" ]; then
     echo "📦 Creating and starting container '$CONTAINER_NAME'..."
@@ -36,8 +34,6 @@ elif [ ! "$(docker ps -q -f name=^${CONTAINER_NAME}$)" ]; then
     echo "⚙️ Starting the existing container '$CONTAINER_NAME'."
     docker start "$CONTAINER_NAME"
 fi
-
-
 
 COMMAND_STR+="\"$COMMAND\" "
 

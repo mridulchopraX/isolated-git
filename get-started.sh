@@ -8,11 +8,12 @@ read username
 
 IMAGE_NAME="isolated-git"
 CONTAINER_NAME="$username-git"
-SSH_DIR="$script_dir/internal/$username/.ssh"
-GNUPG_DIR="$script_dir/internal/$username/.gnupg"
+SSH_DIR="$script_dir/keystore/$username/.ssh"
+GNUPG_DIR="$script_dir/keystore/$username/.gnupg"
 
 mkdir -p "$SSH_DIR"
 mkdir -p "$GNUPG_DIR"
+
 
 echo "🛠️ Building Docker Image..."
 docker build -t "$IMAGE_NAME" .

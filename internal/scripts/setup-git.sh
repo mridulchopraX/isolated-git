@@ -15,17 +15,17 @@ echo -e "\033[0m"
 read email
 
 # Generate SSH key
-ssh-keygen -o -a 256 -t ed25519 -C "$email - $(date +'%m/%d/%Y')" -f ~/.ssh/id_ed25519.GitHub || { echo "SSH key generation failed"; exit 1; }
+ssh-keygen -o -a 256 -t ed25519 -C "$email - $(date +'%m/%d/%Y')" -f /root/.ssh/id_ed25519.GitHub || { echo "SSH key generation failed"; exit 1; }
 
 # Start SSH agent
 echo 'eval "$(ssh-agent -s)"' >>~/.profile
 eval "$(ssh-agent -s)"
-ssh-add -k ~/.ssh/id_ed25519.GitHub
+ssh-add -k /root/.ssh/id_ed25519.GitHub
 
 # Print SSH key with green color
 echo -e "<<< PRINTING SSH KEY CONTENTS. PLEASE ADD TO YOUR GITHUB ACCOUNT >>>"
 echo -e "\033[0;32m"  # Set text color to green
-cat ~/.ssh/id_ed25519.GitHub.pub
+cat /root/.ssh/id_ed25519.GitHub.pub
 echo -e "\033[0m"  # Reset text color to default
 
 # Generate GPG key
