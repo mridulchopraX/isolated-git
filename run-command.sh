@@ -1,10 +1,10 @@
 #!/bin/bash
 
-script_dir="$(dirname "$(realpath "$0")")"
+SCRIPT_DIR="$(dirname "$(realpath "$0")")"
 IMAGE_NAME="isolated-git"
 CONTAINER_NAME="$username-git"
 SSH_DIR="$script_dir/internal/$username/.ssh"
-GNUPG_DIR="$script_dir/internal/$username/.gnupg"
+GNUPG_DIR="$SCRIPT_DIR/internal/$username/.gnupg"
 PROJECT_HOME="$HOME/Documents/mridulchopraX"
 
 
