@@ -6,8 +6,9 @@ COMMAND=$2
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
 IMAGE_NAME="isolated-git"
 CONTAINER_NAME="$USERNAME-git"
-SSH_DIR="$SCRIPT_DIR/internal/$username/.ssh"
-GNUPG_DIR="$SCRIPT_DIR/internal/$username/.gnupg"
+KEYSTORE="$HOME/my-keystore/$username"
+SSH_DIR="$KEYSTORE/.ssh"
+GNUPG_DIR="$KEYSTORE/.gnupg"
 PROJECT_HOME="$HOME/Documents/mridulchopraX"
 
 shift 2;
