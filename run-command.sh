@@ -6,7 +6,7 @@ COMMAND=$2
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
 IMAGE_NAME="isolated-git"
 CONTAINER_NAME="$USERNAME-git"
-KEYSTORE="$HOME/my-keystore/$username"
+KEYSTORE="$HOME/my-keystore/$USERNAME"
 SSH_DIR="$KEYSTORE/.ssh"
 GNUPG_DIR="$KEYSTORE/.gnupg"
 PROJECT_HOME="$HOME/Documents/mridulchopraX"
@@ -20,6 +20,8 @@ for arg in "${ARGS[@]}"; do
     ARGS_STR+=$arg
 done
 ARGS_STR=${ARGS_STR% } # Remove the trailing space
+
+echo $USERNAME
 
 if [ ! "$(docker ps -a -q -f name=^${CONTAINER_NAME}$)" ]; then
     echo "📦 Creating and starting container '$CONTAINER_NAME'..."
