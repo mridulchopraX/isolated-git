@@ -43,10 +43,22 @@ COMMAND_STR+="\"$COMMAND\" "
     # Call the script with the correct parameters
     # echo "<run-command> Command : $COMMAND_STR, ARGS : $ARGS_STR"
 
-PROJECT=$(basename "$PWD")
+# Map the host CWD onto the container's /projects mount, so my-git works from
+# the projects root and from nested sub-directories, not just direct children.
+HOST_PWD="$(realpath "$PWD")"
+PROJECT_HOME_REAL="$(realpath "$PROJECT_HOME")"
+case "$HOST_PWD" in
+    "$PROJECT_HOME_REAL")
+        PROJECT="." ;;
+    "$PROJECT_HOME_REAL"/*)
+        PROJECT="${HOST_PWD#$PROJECT_HOME_REAL/}" ;;
+    *)
+        echo "❌ my-git must be run inside $PROJECT_HOME_REAL (currently in $HOST_PWD)" >&2
+        exit 1 ;;
+esac
 COMMAND_RUNNER="scripts/command-runner.sh"
 
 export DOCKER_CLI_HINTS=false
 
 docker exec -ti "$CONTAINER_NAME" \
-/bin/ash -c "$COMMAND_RUNNER $PROJECT $COMMAND_STR $ARGS_STR"
+/bin/ash -c "$COMMAND_RUNNER \"$PROJECT\" $COMMAND_STR $ARGS_STR"
